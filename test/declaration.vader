@@ -1,0 +1,128 @@
+Execute (load ftplugin):
+  source ../ftplugin/erlang.vim
+
+# next declaration
+Given erlang (]]):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ]]x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2.
+
+  (1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang (]] with new line):
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ]]x
+
+Expect erlang:
+
+  (1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang (]m with comments):
+  % comment
+  f(1) -> 1;
+  % comment
+  f(2) -> 2.
+
+  % comment
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ]]]]x
+
+Expect erlang:
+  % comment
+  f(1) -> 1;
+  % comment
+  f(2) -> 2.
+
+  % comment
+  (1) -> 1;
+  y(2) -> 2.
+
+# prev clause
+Given erlang ([[):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[[x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2.
+
+  (1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang ([[ with comments):
+  % comment
+  f(1) -> 1;
+  % comment
+  f(2) -> 2.
+
+  % comment
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[[[[x
+
+Expect erlang:
+  % comment
+  (1) -> 1;
+  % comment
+  f(2) -> 2.
+
+  % comment
+  y(1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang (]m with -spec):
+  -spec f(number()) -> number().
+  f(1) -> 1;
+  (2) -> 2.
+
+  -spec y(number()) -> number().
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ]]]]x
+
+Expect erlang:
+  -spec f(number()) -> number().
+  f(1) -> 1;
+  (2) -> 2.
+
+  -spec y(number()) -> number().
+  (1) -> 1;
+  y(2) -> 2.

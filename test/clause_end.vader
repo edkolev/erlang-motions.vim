@@ -1,0 +1,47 @@
+Execute (load ftplugin):
+  source ../ftplugin/erlang.vim
+  source ../after/syntax/erlang.vim
+
+# next clause end
+Given erlang (]M):
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]Mx
+
+Expect erlang:
+  f(1) -> 1
+  f(2) -> 2.
+
+#
+Given erlang (]M):
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3.
+
+Do:
+  ]M]M]Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3
+
+# prev clause end
+Given erlang ([M):
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3.
+
+Do:
+  G[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+  f(3) -> 3.
+
+# TODO: after/syntax/erlang.vim
+# - -spec
+# comment

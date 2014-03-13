@@ -1,0 +1,102 @@
+Execute (load ftplugin):
+  source ../ftplugin/erlang.vim
+
+# next clause
+Given erlang (]m):
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]mx
+
+Expect erlang:
+  f(1) -> 1;
+  (2) -> 2.
+
+#
+Given erlang (]m with new line):
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]mx
+
+Expect erlang:
+
+  (1) -> 1;
+  f(2) -> 2.
+
+#
+Given erlang (]m with comments):
+  % comment
+  f(1) -> 1;
+  % comment
+  f(2) -> 2.
+
+Do:
+  ]m]mx
+
+Expect erlang:
+  % comment
+  f(1) -> 1;
+  % comment
+  (2) -> 2.
+
+# prev clause
+Given erlang ([m):
+  f(1) -> 1;
+  f(2) -> 2;
+  f(3) -> 3.
+
+Do:
+  ]m]m[mx
+
+Expect erlang:
+  f(1) -> 1;
+  (2) -> 2;
+  f(3) -> 3.
+
+#
+Given erlang ([m):
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]m[mx
+
+Expect erlang:
+  (1) -> 1;
+  f(2) -> 2.
+
+#
+Given erlang ([m with comments):
+  % comment
+  f(1) -> 1;
+  % comment
+  f(2) -> 2.
+
+Do:
+  jjj[mx
+
+Expect erlang:
+  % comment
+  (1) -> 1;
+  % comment
+  f(2) -> 2.
+
+#
+Given erlang (]m with -spec):
+  -spec convert(tuple()) -> list();
+               (list()) -> tuple().
+  convert(Tup) when is_tuple(Tup) -> tuple_to_list(Tup);
+  convert(L = [_|_]) -> list_to_tuple(L).
+
+Do:
+  ]m]mx
+
+Expect erlang:
+  -spec convert(tuple()) -> list();
+               (list()) -> tuple().
+  convert(Tup) when is_tuple(Tup) -> tuple_to_list(Tup);
+  onvert(L = [_|_]) -> list_to_tuple(L).

@@ -1,0 +1,44 @@
+Execute (load ftplugin):
+  source ../ftplugin/erlang.vim
+  source ../after/syntax/erlang.vim
+
+# next declaration end
+Given erlang (][):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  ][x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+
+# prev declaration end
+Given erlang ([]):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[]x
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+# TODO: after/syntax/erlang.vim
+# - -spec
+# - comment
