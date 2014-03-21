@@ -12,13 +12,17 @@ Motions and text objects for erlang!
 
 * `[m` previous function clause
 
-* And more: `]M`, `[M`, `][`, `[]` go to next/previous clause/declaration **end**
+* And more: `]M`, `[M`, `][`, `[]` go to **end** of next/previous clause/declaration
 
 ### Text objects
 
-* `im`, `am` inside/around function clause
+* `im`, `am` inside/around function clause. `vim`:
 
-* `iM`, `aM` inside/around function declaration
+![screen shot 2014-03-21 at 11 05 25 pm](https://f.cloud.github.com/assets/1532071/2488032/31c4cfac-b13d-11e3-971f-646ce86b5555.png)
+
+* `iM`, `aM` inside/around function declaration. `vaM`:
+
+![screen shot 2014-03-21 at 11 04 53 pm](https://f.cloud.github.com/assets/1532071/2488015/0960aa86-b13d-11e3-985c-6835eac0dc68.png)
 
 ### Installation
 
