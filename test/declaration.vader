@@ -1,6 +1,3 @@
-Execute (load ftplugin):
-  source ../ftplugin/erlang.vim
-
 # next declaration
 Given erlang (]]):
   f(1) -> 1;

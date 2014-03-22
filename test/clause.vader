@@ -1,6 +1,3 @@
-Execute (load ftplugin):
-  source ../ftplugin/erlang.vim
-
 # next clause
 Given erlang (]m):
   f(1) -> 1;
@@ -100,3 +97,54 @@ Expect erlang:
                (list()) -> tuple().
   convert(Tup) when is_tuple(Tup) -> tuple_to_list(Tup);
   onvert(L = [_|_]) -> list_to_tuple(L).
+
+#
+Given erlang (]m skipping comments and new lines):
+
+  % comment
+
+  % more commments
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]m]mx
+
+Expect erlang:
+
+  % comment
+
+  % more commments
+
+  f(1) -> 1;
+  (2) -> 2.
+
+
+#
+# TODO fix failing test
+# Given erlang ([m skipping comments and new lines):
+#   f(1) -> 1;
+#   f(2) -> 2.
+# 
+#   % comment
+# 
+#   % more commments
+# 
+#   y(1) -> 1;
+#   y(2) -> 2.
+# 
+# Do:
+#   G[m[mx
+# 
+# Expect erlang:
+#   f(1) -> 1;
+#   (2) -> 2.
+# 
+#   % comment
+# 
+#   % more commments
+# 
+#   y(1) -> 1;
+#   y(2) -> 2.
+# 

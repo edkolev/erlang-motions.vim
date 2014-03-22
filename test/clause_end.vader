@@ -1,7 +1,3 @@
-Execute (load ftplugin):
-  source ../ftplugin/erlang.vim
-  source ../after/syntax/erlang.vim
-
 # next clause end
 Given erlang (]M):
   f(1) -> 1;
@@ -54,6 +50,32 @@ Expect erlang:
   f(State) when State#state.running==true ->
     123
 
+#
+Given erlang ([M skipping comments and new lines):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[M[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+
 # TODO: after/syntax/erlang.vim
 # - -spec
-# comment
+
