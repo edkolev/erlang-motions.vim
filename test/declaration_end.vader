@@ -39,6 +39,18 @@ Expect erlang:
   y(1) -> 1;
   y(2) -> 2.
 
+# dots in records
+Given erlang (dots in records):
+  f(State) when State#state.running==true ->
+    123.
+
+Do:
+  ][x
+
+Expect erlang:
+  f(State) when State#state.running==true ->
+    123
+
 # TODO: after/syntax/erlang.vim
 # - -spec
 # - comment
