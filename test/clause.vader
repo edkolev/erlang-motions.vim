@@ -122,29 +122,28 @@ Expect erlang:
 
 
 #
-# TODO fix failing test
-# Given erlang ([m skipping comments and new lines):
-#   f(1) -> 1;
-#   f(2) -> 2.
-# 
-#   % comment
-# 
-#   % more commments
-# 
-#   y(1) -> 1;
-#   y(2) -> 2.
-# 
-# Do:
-#   G[m[mx
-# 
-# Expect erlang:
-#   f(1) -> 1;
-#   (2) -> 2.
-# 
-#   % comment
-# 
-#   % more commments
-# 
-#   y(1) -> 1;
-#   y(2) -> 2.
-# 
+Given erlang ([m skipping comments and new lines):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[m[mx
+
+Expect erlang:
+  f(1) -> 1;
+  (2) -> 2.
+
+  % comment
+
+  % more commments
+
+  y(1) -> 1;
+  y(2) -> 2.
+

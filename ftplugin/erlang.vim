@@ -42,11 +42,11 @@ fun! s:declaration_end(flags, mode)
 endfun
 
 fun! s:clause(flags, mode)
-  call s:go_to('\(\.\|\%^\|\;\)\_s*\(%.*\n\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode)
+  call s:go_to('\(\.\|\%^\|\;\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode)
 endfun
 
 fun! s:clause_end(flags, mode)
-  call s:go_to('\(\.\w\@!\|[\;\.]\_s*\(%.*\n\)*\n*\_^\s*[a-z][a-zA-Z_0-9]*(\)', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode)
+  call s:go_to('\(\.\w\@!\|[\;\.]\_s*\(%.*\n\|\_s\)*\n*\_^\s*[a-z][a-zA-Z_0-9]*(\)', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode)
 endfun
 
 fun! s:go_to(pattern, flags, skip_syn, mode)
