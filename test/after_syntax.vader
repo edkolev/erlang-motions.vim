@@ -1,0 +1,14 @@
+Execute (define HL function):
+  function! HL()
+    return join(map(synstack(line('.'), col('.')), 'synIDattr(v:val,"name")'), ' ')
+  endfunction
+
+Given erlang:
+  -spec f(number()) -> number().
+  f(1) -> 1;
+  f(2) -> 2
+
+Execute:
+  Assert HL() =~# 'erlangSkippableAttributeDeclaration'
+  call search('f(1)')
+  Assert HL() !~# 'erlangSkippableAttributeDeclaration'
