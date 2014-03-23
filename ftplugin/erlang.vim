@@ -27,7 +27,7 @@ if maparg('im','n') == ''
 endif
 
 if maparg('iM','n') == ''
-  onoremap <silent> <buffer> iM :<C-U>call <SID>wrap_im('[[','][')<CR>
+  onoremap <silent> <buffer> iM :<C-U>call <SID>inside('[[','][')<CR>
   onoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
   xnoremap <silent> <buffer> iM :<C-U>call <SID>inside('[[','][')<CR>
   xnoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>

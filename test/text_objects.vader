@@ -1,0 +1,55 @@
+#
+Given erlang (im):
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  dim
+
+Expect erlang:
+  f(1) -> ;
+  f(2) -> 2.
+
+#
+Given erlang (am):
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  dam
+
+Expect erlang:
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang (iM):
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  diM
+
+Expect erlang:
+  f(1) -> .
+  y(1) -> 1;
+  y(2) -> 2.
+
+#
+Given erlang (aM):
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  daM
+
+Expect erlang:
+  y(1) -> 1;
+  y(2) -> 2.
