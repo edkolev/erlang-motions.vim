@@ -68,20 +68,45 @@ Expect erlang:
   f(1) -> 1;
   f(2) -> 2
 
-# TODO uncomment after setting up after/syntax properly
-# Given erlang (][ with -spec):
-# 
-#   -spec f(number()) -> number().
-# 
-#   f(1) -> 1;
-#   f(2) -> 2.
-# 
-# Do:
-#   ][x
-# 
-# Expect erlang:
-# 
-#   -spec f(number()) -> number().
-# 
-#   f(1) -> 1;
-#   f(2) -> 2.
+#
+Given erlang (][ with -spec):
+
+  -spec f(number()) -> number().
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ][x
+
+Expect erlang:
+
+  -spec f(number()) -> number().
+
+  f(1) -> 1;
+  f(2) -> 2
+
+#
+Given erlang ([] with -spec):
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+  -spec f(number()) -> number().
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[]x
+
+Expect erlang:
+
+  f(1) -> 1;
+  f(2) -> 2
+
+  -spec f(number()) -> number().
+
+  y(1) -> 1;
+  y(2) -> 2.
+

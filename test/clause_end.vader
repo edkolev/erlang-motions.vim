@@ -76,6 +76,43 @@ Expect erlang:
   y(1) -> 1;
   y(2) -> 2.
 
-# TODO: after/syntax/erlang.vim
-# - -spec
+#
+Given erlang (]M with -spec):
+
+  -spec f(number()) -> number().
+
+  f(1) -> 1;
+  f(2) -> 2.
+
+Do:
+  ]Mx
+
+Expect erlang:
+
+  -spec f(number()) -> number().
+
+  f(1) -> 1
+  f(2) -> 2.
+
+#
+Given erlang ([M with -spec):
+  f(1) -> 1;
+  f(2) -> 2.
+
+  -spec f(number()) -> number().
+
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G[M[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+
+  -spec f(number()) -> number().
+
+  y(1) -> 1;
+  y(2) -> 2.
 
