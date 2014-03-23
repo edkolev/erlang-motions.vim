@@ -116,3 +116,37 @@ Expect erlang:
   y(1) -> 1;
   y(2) -> 2.
 
+#
+Given erlang (]M with count):
+
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  3]Mx
+
+Expect erlang:
+
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1
+  y(2) -> 2.
+
+#
+Given erlang ([M with count):
+  f(1) -> 1;
+  f(2) -> 2.
+  y(1) -> 1;
+  y(2) -> 2.
+
+Do:
+  G$2[Mx
+
+Expect erlang:
+  f(1) -> 1;
+  f(2) -> 2
+  y(1) -> 1;
+  y(2) -> 2.
+

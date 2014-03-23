@@ -1,23 +1,23 @@
 
-nnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'n')<CR>
-nnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'n')<CR>
-nnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'n')<CR>
-nnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'n')<CR>
+nnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'n', v:count1)<CR>
 
-xnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'v')<CR>
-xnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'v')<CR>
-xnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'v')<CR>
-xnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'v')<CR>
+xnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'v', v:count1)<CR>
 
-nnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'n')<CR>
-nnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'n')<CR>
-nnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'n')<CR>
-nnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'n')<CR>
+nnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'n', v:count1)<CR>
+nnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'n', v:count1)<CR>
 
-xnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'v')<CR>
-xnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'v')<CR>
-xnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'v')<CR>
-xnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'v')<CR>
+xnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'v', v:count1)<CR>
+xnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'v', v:count1)<CR>
 
 if maparg('im','n') == ''
   xnoremap <silent> <buffer> im :<C-U>call <SID>inside('[m',']M')<CR>
@@ -33,41 +33,46 @@ if maparg('iM','n') == ''
   xnoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
 endif
 
-fun! s:declaration(flags, mode)
-  call s:go_to('\(\.\|\%^\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode)
+fun! s:declaration(flags, mode, count)
+  call s:go_to('\(\.\|\%^\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode, a:count)
 endfun
 
-fun! s:declaration_end(flags, mode)
-  call s:go_to('\.\w\@!', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode)
+fun! s:declaration_end(flags, mode, count)
+  call s:go_to('\.\w\@!', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode, a:count)
 endfun
 
-fun! s:clause(flags, mode)
-  call s:go_to('\(\.\|\%^\|\;\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode)
+fun! s:clause(flags, mode, count)
+  call s:go_to('\(\.\|\%^\|\;\)\_s*\(%.*\n\|\_s\)*\n*\_^\s*\zs[a-z][a-zA-Z_0-9]*(', a:flags, '', a:mode, a:count)
 endfun
 
-fun! s:clause_end(flags, mode)
-  call s:go_to('\(\.\w\@!\|[\;\.]\_s*\(%.*\n\|\_s\)*\n*\_^\s*[a-z][a-zA-Z_0-9]*(\)', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode)
+fun! s:clause_end(flags, mode, count)
+  call s:go_to('\(\.\w\@!\|[\;\.]\_s*\(%.*\n\|\_s\)*\n*\_^\s*[a-z][a-zA-Z_0-9]*(\)', a:flags, 'erlangComment\|erlangString\|erlangSkippableAttributeDeclaration', a:mode, a:count)
 endfun
 
-fun! s:go_to(pattern, flags, skip_syn, mode)
+fun! s:go_to(pattern, flags, skip_syn, mode, count)
   norm! m'
   if a:mode ==# 'v'
     norm! gv
   endif
 
-  let line = line('.') | let col  = col('.')
-  let pos = search(a:pattern,'W'.a:flags)
+  let match_count = a:count
+  while match_count > 0
+    let match_count -= 1
 
-  if len(a:skip_syn) > 0
-    while pos != 0 && s:synname() =~# a:skip_syn
-      let pos = search(a:pattern,'W'.a:flags)
-    endwhile
-  endif
+    let line = line('.') | let col  = col('.')
+    let pos = search(a:pattern,'W'.a:flags)
 
-  if pos == 0
-    call cursor(line,col)
-    return
-  endif
+    if len(a:skip_syn) > 0
+      while pos != 0 && s:synname() =~# a:skip_syn
+        let pos = search(a:pattern,'W'.a:flags)
+      endwhile
+    endif
+
+    if pos == 0
+      call cursor(line,col)
+      return
+    endif
+  endwhile
 endfunction
 
 function! s:synname()

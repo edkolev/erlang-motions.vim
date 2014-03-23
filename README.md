@@ -12,7 +12,9 @@ Motions and text objects for erlang!
 
 * `[m` previous function clause
 
-* And more: `]M`, `[M`, `][`, `[]` go to **end** of next/previous clause/declaration
+* And more: `]M`, `[M`, `][`, `[]` go to **end** of next/previous clause/declaration.
+
+  Each motion can be prefixed with a count
 
 ### Text objects
 
