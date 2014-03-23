@@ -14,15 +14,21 @@ Motions and text objects for erlang!
 
 * And more: `]M`, `[M`, `][`, `[]` go to **end** of next/previous clause/declaration.
 
-  Each motion can be prefixed with a count
+  Each motion can be prefixed with a count.
 
 ### Text objects
 
-* `im`, `am` inside/around function clause. `vim`:
+* `im`, `am` inside/around function clause
 
-![screen shot 2014-03-21 at 11 05 25 pm](https://f.cloud.github.com/assets/1532071/2488032/31c4cfac-b13d-11e3-971f-646ce86b5555.png)
+* `iM`, `aM` inside/around function declaration
 
-* `iM`, `aM` inside/around function declaration. `vaM`:
+### Example
+
+* `vim` "visual inner method (function clause)":
+
+![screen shot 2014-03-21 at 11 05 25 pm copy](https://f.cloud.github.com/assets/1532071/2492908/bb87be1a-b265-11e3-9e5d-693d0ad821ae.png)
+
+* `vaM` "visual arround Method (function declaration)":
 
 ![screen shot 2014-03-21 at 11 04 53 pm](https://f.cloud.github.com/assets/1532071/2488015/0960aa86-b13d-11e3-985c-6835eac0dc68.png)
 
