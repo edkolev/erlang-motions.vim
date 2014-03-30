@@ -1,4 +1,6 @@
 
+let b:undo_ftplugin = exists("b:undo_ftplugin") ? b:undo_ftplugin . "|" : ""
+
 nnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'n', v:count1)<CR>
@@ -8,6 +10,7 @@ xnoremap <silent> <buffer> ]] :<C-U>call <SID>declaration('', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> [[ :<C-U>call <SID>declaration('b', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> ][ :<C-U>call <SID>declaration_end('', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> [] :<C-U>call <SID>declaration_end('b', 'v', v:count1)<CR>
+let b:undo_ftplugin .= " exe 'unmap <buffer> [[' |  exe 'unmap <buffer> ]]' |  exe 'unmap <buffer> []' |  exe 'unmap <buffer> ]['"
 
 nnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'n', v:count1)<CR>
 nnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'n', v:count1)<CR>
@@ -18,12 +21,14 @@ xnoremap <silent> <buffer> ]m :<C-U>call <SID>clause('', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> [m :<C-U>call <SID>clause('b', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> ]M :<C-U>call <SID>clause_end('', 'v', v:count1)<CR>
 xnoremap <silent> <buffer> [M :<C-U>call <SID>clause_end('b', 'v', v:count1)<CR>
+let b:undo_ftplugin .= " | exe 'unmap <buffer> [m' |  exe 'unmap <buffer> ]m' |  exe 'unmap <buffer> [M' |  exe 'unmap <buffer> ]M'"
 
 if maparg('im','n') == ''
   xnoremap <silent> <buffer> im :<C-U>call <SID>inside('[m',']M')<CR>
   xnoremap <silent> <buffer> am :<C-U>call <SID>around('[m',']M')<CR>
   onoremap <silent> <buffer> im :<C-U>call <SID>inside('[m',']M')<CR>
   onoremap <silent> <buffer> am :<C-U>call <SID>around('[m',']M')<CR>
+  let b:undo_ftplugin .= " | exe 'ounmap <buffer> im' |  exe 'ounmap <buffer> am' |  exe 'xunmap <buffer> im' |  exe 'xunmap <buffer> am'"
 endif
 
 if maparg('iM','n') == ''
@@ -31,6 +36,7 @@ if maparg('iM','n') == ''
   onoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
   xnoremap <silent> <buffer> iM :<C-U>call <SID>inside('[[','][')<CR>
   xnoremap <silent> <buffer> aM :<C-U>call <SID>around('[[','][')<CR>
+  let b:undo_ftplugin .= " | exe 'ounmap <buffer> iM' |  exe 'ounmap <buffer> aM' |  exe 'xunmap <buffer> iM' |  exe 'xunmap <buffer> aM'"
 endif
 
 fun! s:declaration(flags, mode, count)
