@@ -1,0 +1,72 @@
+*erlang-motions.txt*
+
+                        Motions and text objects ~
+                             for erlang ~
+
+Author:  Evgeni Kolev
+License: The MIT License (MIT)
+Repo:    http://github.com/edkolev/erlang-motions.vim
+
+==============================================================================
+MOTIONS                                                     *erlang-motions*
+
+Vanilla vim provides motions such as |]m| and |]]| for navigating curly-bracket
+languages, but not for erlang. |erlang-motions| enhances these motions so they
+work on erlang files.
+
+                                                                 *erlang-]m*
+]m      Go to start of next function clause.
+
+                                                                 *erlang-]M*
+]M      Go to end of next function clause.
+
+                                                                 *erlang-[m*
+[m      Go to start of previous function clause.
+
+                                                                 *erlang-[M*
+[M      Go to end of previous function clause.
+
+                                                                 *erlang-]]*
+]]      Go to start of next function declaration.
+
+                                                                 *erlang-][*
+][      Go to end of next function declaration.
+
+                                                                 *erlang-[[*
+[[      Go to start of previous function declaration.
+
+                                                                 *erlang-[]*
+[]      Go to end of previous function declaration.
+
+==============================================================================
+TEXT OBJECTS                                           *erlang-text-objects*
+
+The |erlang-motions| plugin adds text objects for operating on erlang function
+declarations and function clauses. You can read what exactly is a clause and
+what is a declaration here
+http://www.erlang.org/doc/reference_manual/functions.html.
+
+                                                   *erlang-v_am* *erlang-am*
+am      "a function clause", select from function clause head to the end of the
+        the function clause.
+
+                                                   *erlang-v_im* *erlang-im*
+im      "inner function clause", select the function clause, excluding the head
+        and the ending dot/semicolon.
+
+
+                                                   *erlang-v_aM* *erlang-aM*
+aM      "a function declaration", select all clauses of the function.
+
+                                                   *erlang-v_iM* *erlang-iM*
+iM      "inner function declaration", select all clauses, excluding the first
+        head and the ending dot.
+
+==============================================================================
+CREDITS
+
+This plugin was inspired by |vim-ruby|. This help file was mostly copied from
+vim-ruby's help file and s/ruby/erlang/g-ed.
+
+vim:tw=78:sw=4:ts=8:ft=help:norl:
+
